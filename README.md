@@ -2,7 +2,7 @@
 
    
 ### 介绍
-该微服务前端部分使用Vue.js框架。目前采用nginx代理的方式部署到服务器上。所涉及的内容为：Vue打包、nginx的配置等
+    该微服务前端部分使用Vue.js框架。目前采用nginx代理的方式部署到服务器上。所涉及的内容为：Vue打包、nginx的配置等
 
 ### 打包
 - 打开终端，定位到前端项目目录
@@ -14,11 +14,14 @@
 - 打开nginx目录下的nginx.conf文件，修改里面的配置：
     - 在server中配置nginx端口号listen
     - 在server中配置打包文件定位目录location，例：
+
         location / {
             root   C:\Users\Administrator\Desktop\web;
             index  index.html;
         }
+
     - 在server中配置访问后端的接口地址location，添加下面代码。其中的172.20.41.8:3099改为后端的地址，其他不变
+
         location ^~/admin/{
             proxy_pass http://172.20.41.8:3099/admin/;
             include proxy_setting.conf;
@@ -28,10 +31,11 @@
             proxy_pass http://172.20.41.8:3099/auth/;
             include proxy_setting.conf;
         }
+        
 - 保存配置，启动nginx
 
 
 
 ### 查看效果
-    打开浏览器，输入网址172.20.41.9:9011/#/login （172.20.41.9为服务器ip，9011为nginx的端口号）
+    打开浏览器，输入网址172.20.41.9:9011/#/login （其中172.20.41.9为服务器ip，9011为nginx的端口号）
 
