@@ -12,13 +12,13 @@
 ### 配置
 - 将打包文件（static、index.html）,放到服务器上，本例放到了服务器桌面，新建文件夹（web）目录下 C:\Users\Administrator\Desktop\web
 - 打开nginx目录下的nginx.conf文件，修改里面的配置：
-    ① 在server中配置nginx端口号listen
-    ② 在server中配置打包文件定位目录location，例：
+    - 在server中配置nginx端口号listen
+    - 在server中配置打包文件定位目录location，例：
         location / {
             root   C:\Users\Administrator\Desktop\web;
             index  index.html;
         }
-    ③ 在server中配置访问后端的接口地址location，添加下图代码。图中的172.20.41.8:3099改为后端的地址，其他不变
+    - 在server中配置访问后端的接口地址location，添加下面代码。其中的172.20.41.8:3099改为后端的地址，其他不变
         location ^~/admin/{
             proxy_pass http://172.20.41.8:3099/admin/;
             include proxy_setting.conf;
